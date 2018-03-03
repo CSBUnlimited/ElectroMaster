@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ElectroMaster.Core\ElectroMaster.Core.csproj" />
+    <ProjectReference Include="..\ElectroMaster.DataAccess\ElectroMaster.DataAccess.csproj" />
+    <ProjectReference Include="..\ElectroMaster.Models\ElectroMaster.Models.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,50 @@
+﻿<Application x:Class="ElectroMaster.Views.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:ElectroMaster.Views"
+			 xmlns:sys="clr-namespace:System;assembly=mscorlib"
+			 xmlns:locator="clr-namespace:ElectroMaster.ViewModels.Locator;assembly=ElectroMaster.ViewModels.Locator" 
+             StartupUri="StartupWindowView.xaml">
+	
+    <Application.Resources>
+		<ResourceDictionary>
+			<!-- Author -->
+			<sys:String x:Key="Author-FullName-String">Chathuranga Basnayake</sys:String>
+			<sys:String x:Key="Author-CompanyName-String">CSB Unlimited</sys:String>
+			<sys:String x:Key="Author-CompanyNameWithProduction-String">CSB Unlimited Production</sys:String>
+
+			<!-- System Name -->
+			<sys:String x:Key="System-DisplayName-FullString">Electro Master Software</sys:String>
+			<sys:String x:Key="System-DisplayName-ShortString">Electro Master</sys:String>
+
+			<!-- Top Nav Height -->
+			<sys:Double x:Key="TopNav-Height-Double">50</sys:Double>
+			<GridLength x:Key="TopNav-Height-GridLength">50</GridLength>
+
+			<!-- Side Nav Button Height -->
+			<sys:Double x:Key="SideNav-Button-Height-Double">60</sys:Double>
+
+			<!-- Side Nav Button FontSize -->
+			<sys:Double x:Key="SideNav-Button-FontSize-Double">20</sys:Double>
+
+			<!-- Side Nav Button Margin -->
+			<Thickness x:Key="SideNav-Button-Margin-Thickness" Left="0" Right="0" Top="5" Bottom="5"/>
+
+			
+			<ResourceDictionary.MergedDictionaries>
+
+				<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+				<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+				<ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+				<ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+
+				<!-- View Model Locators  -->
+				<ResourceDictionary>
+					<locator:ViewModelsLocator x:Key="ViewModelsLocator" />
+				</ResourceDictionary>
+
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</Application.Resources>
+	
+</Application>
