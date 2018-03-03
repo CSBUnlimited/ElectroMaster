@@ -29,7 +29,7 @@ namespace ElectroMaster.Services.Application
         /// <param name="timePeriod">Interval in miliseconds</param>
         public BackgroundService(Action methodToExecute, int timePeriod) : this()
         {
-            Create(methodToExecute, timePeriod);
+            Start(methodToExecute, timePeriod);
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace ElectroMaster.Services.Application
         /// </summary>
         /// <param name="methodToExecute">Action need to perform</param>
         /// <param name="timePeriod">Interval in miliseconds</param>
-        public void Create(Action methodToExecute, int timePeriod)
+        public void Start(Action methodToExecute, int timePeriod)
         {
             if (!IsRunning)
             {

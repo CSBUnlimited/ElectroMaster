@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ElectroMaster.Views"
         mc:Ignorable="d" ShowInTaskbar="False"
         Title="{StaticResource System-DisplayName-FullString}" Height="350" Width="600" ResizeMode="NoResize" Topmost="True" 
-		WindowStartupLocation="CenterScreen" Cursor="Wait" AllowsTransparency="True" WindowStyle="None" Opacity="0.90"
+		WindowStartupLocation="CenterScreen" AllowsTransparency="True" WindowStyle="None" Opacity="0.90"
 		
 		xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
 		TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -26,6 +26,9 @@
 				<!--<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />-->
 				<ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Blue.xaml" />
 				<!--<ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Indigo.xaml" />-->
+
+				<ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Red.Named.Primary.xaml" />
+				<ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Indigo.Named.Primary.xaml" />
 			</ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>
 	</Window.Resources>
@@ -42,10 +45,59 @@
 			<TextBlock Text="{StaticResource System-DisplayName-FullString}" FontSize="50"/>
 			<TextBlock Text="{StaticResource Author-CompanyNameWithProduction-String}" HorizontalAlignment="Right"/>
 
-			<StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0 100 0 0" Height="20">
-				<ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}" 
-							 Value="0" IsIndeterminate="True" Margin="0 0 10 0"/>
-				<TextBlock Text="{Binding Path=LoadingText}" VerticalAlignment="Center"/>
+			<StackPanel HorizontalAlignment="Center" Margin="0 100 0 0" Height="30">
+				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="30" Visibility="{Binding Path=LoadingTextVisibility}">
+					<ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}" VerticalAlignment="Center"
+								 Value="0" IsIndeterminate="True" Margin="0 0 10 0"/>
+					<TextBlock Text="{Binding Path=LoadingText}" VerticalAlignment="Center"/>
+				</StackPanel>
+				<Grid Height="30" Visibility="{Binding Path=ErrorActionsVisibility}">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="90"/>
+						<ColumnDefinition Width="auto"/>
+						<ColumnDefinition Width="90"/>
+						<ColumnDefinition Width="*"/>
+					</Grid.ColumnDefinitions>
+
+					<Button Grid.Column="1" FontSize="13" Padding="0" Height="30" ToolTip="Close Application"
+							Command="{Binding Path=CloseApplcationCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+						<Button.BorderBrush>
+							<SolidColorBrush Color="{StaticResource RedPrimary900}" />
+						</Button.BorderBrush>
+						<Button.Background>
+							<SolidColorBrush Color="{StaticResource RedPrimary900}" />
+						</Button.Background>
+						<Button.Foreground>
+							<SolidColorBrush Color="{StaticResource RedPrimary900Foreground}" />
+						</Button.Foreground>
+						<StackPanel Orientation="Horizontal">
+							<materialDesign:PackIcon Kind="Close" />
+							<TextBlock Margin="8 0 0 0" VerticalAlignment="Center">Close</TextBlock>
+						</StackPanel>
+					</Button>
+					<TextBlock Grid.Column="2" Padding="50 0" FontSize="13" VerticalAlignment="Center">
+						Re-trying in <TextBlock Text="{Binding Path=ErrorActionsRecountText}"/>...
+					</TextBlock>
+					
+					<Button Grid.Column="3" FontSize="13" Padding="0" Height="30" ToolTip="Try again"
+							Command="{Binding Path=RetryInitializeCommand}" IsDefault="True">
+						<Button.BorderBrush>
+							<SolidColorBrush Color="{StaticResource IndigoPrimary900}" />
+						</Button.BorderBrush>
+						<Button.Background>
+							<SolidColorBrush Color="{StaticResource IndigoPrimary800}" />
+						</Button.Background>
+						<Button.Foreground>
+							<SolidColorBrush Color="{StaticResource IndigoPrimary800Foreground}" />
+						</Button.Foreground>
+						<StackPanel Orientation="Horizontal">
+							<materialDesign:PackIcon Kind="Autorenew" />
+							<TextBlock Margin="8 0 0 0" VerticalAlignment="Center">Retry</TextBlock>
+						</StackPanel>
+					</Button>
+				</Grid>
 			</StackPanel>
 		</StackPanel>
 

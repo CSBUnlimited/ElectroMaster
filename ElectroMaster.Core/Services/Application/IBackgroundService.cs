@@ -14,7 +14,7 @@ namespace ElectroMaster.Core.Services.Application
         /// </summary>
         /// <param name="methodToExecute">Action need to perform</param>
         /// <param name="timePeriod">Interval in miliseconds</param>
-        void Create(Action methodToExecute, int timePeriod);
+        void Start(Action methodToExecute, int timePeriod);
 
         /// <summary>
         /// Stop a Background Service
